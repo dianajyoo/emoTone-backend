@@ -1,0 +1,3 @@
+class TonesController < ApplicationController
+
+end
