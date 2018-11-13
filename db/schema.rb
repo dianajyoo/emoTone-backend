@@ -14,6 +14,8 @@ ActiveRecord::Schema.define(version: 2018_11_12_193420) do
 
   create_table "text_inputs", force: :cascade do |t|
     t.string "text"
+    t.integer "score"
+    t.string "tone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
