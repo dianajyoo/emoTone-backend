@@ -40,7 +40,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'ibm_watson'
   gem 'figaro'
-  gem 'httparty'
+  gem 'active_model_serializers', '~> 0.10.0'
 end
 
 
