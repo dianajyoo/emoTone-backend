@@ -37,26 +37,27 @@ class TextInputsController < ApplicationController
       content_type: "text/plain"
     ).result
 
-    # byebug
-    if @result["document_tone"]["tones"].length > 1
+    # @result = {"document_tone"=>{"tones"=>[{"score"=>0.725456,
+    #   "tone_id"=>"joy", "tone_name"=>"Joy"}, {"score"=>0.842108, "tone_id"=>"analytical", "tone_name"=>"Analytical"}]}}
 
-      @score1 = @result["document_tone"]['tones'][1]['score'] * 100
-      @tone1 = @result["document_tone"]['tones'][1]['tone_name']
-      @analysis1 = {text: strong_params['text'], score: @score1, tone: @tone1}
+    @document_tone = @result["document_tone"]["tones"]
 
-      if (@tone1 == nil) || (@tone1 == [])
-        @tone1 = "Tentative"
+    @document_tone.each do |tone|
+      if tone.key?('score')
+        @score = tone['score'] * 100
       end
 
-      @text_input2 = TextInput.create(@analysis1)
+      if tone['tone_name'] != nil || tone['tone_name'] != []
+        @tone = tone['tone_name']
+      else
+        @score = 100
+        @tone = 'Neutral'
+      end
+
+      @analysis = {text: strong_params['text'], score: @score, tone: @tone}
+      @textInput = TextInput.create(@analysis)
 
     end
-
-    @score = @result['document_tone']['tones'][0]['score'] * 100
-    @tone = @result['document_tone']['tones'][0]['tone_name']
-
-    @analysis = {text: strong_params['text'], score: @score, tone: @tone}
-    @text_input = TextInput.create(@analysis)
 
     render json: @result
 
