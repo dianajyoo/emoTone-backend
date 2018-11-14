@@ -7,17 +7,6 @@ class TextInputsController < ApplicationController
   def index
     @text_inputs = TextInput.all
 
-    # tone_analyzer = IBMWatson::ToneAnalyzerV3.new(
-    #   iam_apikey: ENV['IBMWATSON_API_KEY'],
-    #   version: "2017-09-21"
-    # )
-    #
-    # @result = tone_analyzer.tone(
-    #   tone_input: strong_params["text"],
-    #   content_type: "text/plain"
-    # ).result
-    # # byebug
-    #
     render json: @text_inputs
   end
 
@@ -42,21 +31,26 @@ class TextInputsController < ApplicationController
 
     @document_tone = @result["document_tone"]["tones"]
 
-    @document_tone.each do |tone|
-      if tone.key?('score')
-        @score = tone['score'] * 100
-      end
-
-      if tone['tone_name'] != nil || tone['tone_name'] != []
-        @tone = tone['tone_name']
-      else
-        @score = 100
-        @tone = 'Neutral'
-      end
+    if @document_tone == []
+      @score = 100
+      @tone = 'Neutral'
 
       @analysis = {text: strong_params['text'], score: @score, tone: @tone}
       @textInput = TextInput.create(@analysis)
+    else
+      @document_tone.each do |tone|
+        if tone.key?('score')
+          @score = tone['score'] * 100
+        end
 
+        if tone['tone_name'] != nil || tone['tone_name'] != []
+          @tone = tone['tone_name']
+        end
+
+        @analysis = {text: strong_params['text'], score: @score, tone: @tone}
+        @textInput = TextInput.create(@analysis)
+
+      end
     end
 
     render json: @result
