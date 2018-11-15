@@ -1,4 +1,6 @@
 require("ibm_watson/tone_analyzer_v3")
+require("ibm_watson/speech_to_text_v1")
+require("ibm_watson/websocket/recognize_callback")
 require("json")
 
 class TextInputsController < ApplicationController
@@ -16,6 +18,8 @@ class TextInputsController < ApplicationController
   end
 
   def create
+
+    # tone analyzer api here
     tone_analyzer = IBMWatson::ToneAnalyzerV3.new(
       iam_apikey: ENV['IBMWATSON_API_KEY'],
       version: "2017-09-21"
@@ -26,8 +30,19 @@ class TextInputsController < ApplicationController
       content_type: "text/plain"
     ).result
 
-    # @result = {"document_tone"=>{"tones"=>[{"score"=>0.725456,
-    #   "tone_id"=>"joy", "tone_name"=>"Joy"}, {"score"=>0.842108, "tone_id"=>"analytical", "tone_name"=>"Analytical"}]}}
+    # speech to text api here
+    speech_to_text = IBMWatson::SpeechToTextV1.new(
+      iam_apikey: ENV['SPEECHTOTEXT_KEY']
+    )
+
+    File.open(Dir.getwd + "/app/audio_sample.wav") do |audio_file|
+      @recognition = speech_to_text.recognize(
+        audio: audio_file,
+        content_type: "audio/wav",
+        timestamps: true,
+        word_confidence: true
+      ).result
+    end
 
     @document_tone = @result["document_tone"]["tones"]
 
