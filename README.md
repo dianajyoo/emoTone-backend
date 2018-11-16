@@ -1,13 +1,13 @@
 # emoTone
 
-Final project for Module 3 by [Diana J. Yoo](https://github.com/dianajyoo) and [Bijon Miles](https://github.com/BijonMiles).
+Final project for module 3 at Access Labs by [Diana J. Yoo](https://github.com/dianajyoo) and [Bijon Miles](https://github.com/BijonMiles).
 
-emoTone utilizes natural language processing and analyzes emotion and tone behind written text. Uses IBM Watson Tone Analyzer API to predict whether they are happy, sad, afraid, worried, and more. Accepts speech to text input in addition to manual text input.
+emoTone is based on natural language processing, a branch of artificial intelligence that enables computers to understand and interpret human language. With the help of IBM Watson Tone Analyzer API, emoTone analyzes emotion and tone behind written text. Can predict whether text is happy, sad, afraid, worried, and more. Supports speech to text input in addition to manual text input.
 
 ## Built With
 
 * Ruby on Rails
-* Javascript
+* JavaScript
 * HTML/CSS
 * IBM Watson Tone Analyzer API
 * Web Speech API by MDN
