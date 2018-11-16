@@ -1,24 +1,17 @@
-# README
+# emoTone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Final project for Module 3 by [Diana J. Yoo](https://github.com/dianajyoo) and [Bijon Miles](https://github.com/BijonMiles).
 
-Things you may want to cover:
+emoTone utilizes natural language processing and analyzes emotion and tone behind written text. Uses IBM Watson Tone Analyzer API to predict whether they are happy, sad, afraid, worried, and more. Accepts speech to text input in addition to manual text input.
 
-* Ruby version
+## Built With
 
-* System dependencies
+* Ruby on Rails
+* Javascript
+* HTML/CSS
+* IBM Watson Tone Analyzer API
+* Web Speech API by MDN
 
-* Configuration
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [Link to Frontend](https://github.com/dianajyoo/mod-3-final-frontend)
