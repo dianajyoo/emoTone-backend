@@ -14,4 +14,4 @@ emoTone is based on natural language processing, a branch of artificial intellig
 
 
 
-* [Link to Frontend](https://github.com/dianajyoo/mod-3-final-frontend)
+[Link to Frontend](https://github.com/dianajyoo/mod-3-final-frontend)
