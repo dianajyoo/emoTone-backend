@@ -2,16 +2,6 @@ require "ibm_watson"
 require("ibm_watson/tone_analyzer_v3")
 require("json")
 
-
-#
-# var recognition = new SpeechRecognition
-#
-# 
-# recogniton.start()
-# recognition.end()
-# recognition.onend()
-# recognition.results
-
 class TextInputsController < ApplicationController
 
   # GET /text_inputs
